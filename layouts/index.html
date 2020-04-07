@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/plugin/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/plugin/animate.min.css" />
+    <!-- / CSS Files -->
+</head>
+<body>
+    {{ partial "header.html" . }}
+    
+    <section class="slider-full-width">
+    <div id="carousel-full" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-full" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-full" data-slide-to="1"></li>
+            <li data-target="#carousel-full" data-slide-to="2"></li>
+        </ol>
+        
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            {{ range where .Data.Pages "Type" "banner/banner" }}
+               
+                    <div class="item  {{ if eq .Weight 1 }}active{{end}}">
+                        {{ with .Params.featured_image }}<img src="{{ . }}" alt="" />{{ end }}
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <p class="header animated" data-animation="fadeInUp" data-animation-delay="0.2s"><strong>{{.Title}}</strong></p>
+                                <p class="header header-small animated" data-animation="fadeInUp" data-animation-delay="0.8s"><strong>
+                                    {{.Content}}
+                                </strong></p>
+                            </div>
+                        </div>
+                    </div>
+                
+            {{ end }}
+
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-full" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-full" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+    </section>
+    
+    <section class="content content-light">
+        <div class="container">
+            <p class="header text-center">Four good habits of a HUGO developer</p>
+            <p class="text-center"></p>
+
+            <hr class="invisible" />
+            <hr class="invisible" />
+
+            {{ range where .Data.Pages "Type" "habit" }}
+                {{ if or (eq .Weight 1) (eq .Weight 3) (eq .Weight 5) (eq .Weight 7) }}
+                <section class="row animation-scroll">
+                    <figure class="col-md-6 animated" data-animation="bounceInLeft">
+                        {{ with .Params.featured_image }}<img src="{{ . }}"/>{{ end }}
+                    </figure>
+                    <article class="col-md-6 animated" data-animation="bounceInRight">
+                        <h3>{{ .Title }}</h3>
+                        <p>{{ .Content }}</p>
+                    </article>
+                </section>
+
+                <hr class="invisible" />
+                <hr class="invisible" />
+                
+                {{ end }}
+
+                {{ if or (eq .Weight 2) (eq .Weight 4) (eq .Weight 6) (eq .Weight 8) }}
+                    <section class="row animation-scroll">
+                        
+                        <article class="col-md-6 animated" data-animation="bounceInLeft">
+                            <h3>{{ .Title }}</h3>
+                            <p>{{ .Content }}</p>
+                        </article>
+                        <figure class="col-md-6 animated" data-animation="bounceInRight">
+                            {{ with .Params.featured_image }}<img src="{{ . }}"/>{{ end }}
+                        </figure>
+                    </section>
+
+                    <hr class="invisible" />
+                    <hr class="invisible" />
+                    
+                {{ end }}
+
+            {{ end }}
+        </div>
+    </section>
+    
+    {{ partial "footer.html" . }}
+    
+
+    <!-- JavaScript Files -->
+    <script src="plugin/jquery-1.10.2.min.js"></script>
+    <script src="plugin/bootstrap/js/bootstrap.min.js"></script>
+    <script src="script/animate.js"></script>
+    <script src="plugin/jquery.cuteTime.min.js"></script>
+    <script src="script/script.js"></script>
+    <!-- / JavaScript Files -->
+</body>
+</html>
