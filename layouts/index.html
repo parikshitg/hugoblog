@@ -26,22 +26,19 @@
         
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            {{ range where .Data.Pages "Type" "banner/banner" }}
-               
-                    <div class="item  {{ if eq .Weight 1 }}active{{end}}">
-                        {{ with .Params.featured_image }}<img src="{{ . }}" alt="" />{{ end }}
+            {{ range $i,$b := where .Site.RegularPages "Type" "banner" }}
+                    <div class="item  {{ if eq $i 0 }}active{{end}}">
+                        {{ with $b.Params.featured_image }}<img src="{{ . }}" alt="" />{{ end }}
                         <div class="container">
                             <div class="carousel-caption">
-                                <p class="header animated" data-animation="fadeInUp" data-animation-delay="0.2s"><strong>{{.Title}}</strong></p>
+                                <p class="header animated" data-animation="fadeInUp" data-animation-delay="0.2s"><strong>{{$b.Title}}</strong></p>
                                 <p class="header header-small animated" data-animation="fadeInUp" data-animation-delay="0.8s"><strong>
-                                    {{.Content}}
+                                    {{$b.Content}}
                                 </strong></p>
                             </div>
                         </div>
                     </div>
-                
             {{ end }}
-
         </div>
 
         <!-- Controls -->
@@ -62,26 +59,17 @@
             <hr class="invisible" />
             <hr class="invisible" />
 
-            {{ range where .Data.Pages "Type" "habit" }}
-                {{ if or (eq .Weight 1) (eq .Weight 3) (eq .Weight 5) (eq .Weight 7) }}
+            {{ range $i,$h := where .Site.RegularPages "Type" "habit" }}
                 <section class="row animation-scroll">
-                    <figure class="col-md-6 animated" data-animation="bounceInLeft">
-                        {{ with .Params.featured_image }}<img src="{{ . }}"/>{{ end }}
-                    </figure>
-                    <article class="col-md-6 animated" data-animation="bounceInRight">
-                        <h3>{{ .Title }}</h3>
-                        <p>{{ .Content }}</p>
-                    </article>
-                </section>
-
-                <hr class="invisible" />
-                <hr class="invisible" />
-                
-                {{ end }}
-
-                {{ if or (eq .Weight 2) (eq .Weight 4) (eq .Weight 6) (eq .Weight 8) }}
-                    <section class="row animation-scroll">
-                        
+                    {{ if eq (mod $i 2) 0 }}
+                        <figure class="col-md-6 animated" data-animation="bounceInLeft">
+                            {{ with .Params.featured_image }}<img src="{{ . }}"/>{{ end }}
+                        </figure>
+                        <article class="col-md-6 animated" data-animation="bounceInRight">
+                            <h3>{{ .Title }}</h3>
+                            <p>{{ .Content }}</p>
+                        </article>
+                    {{ else }} 
                         <article class="col-md-6 animated" data-animation="bounceInLeft">
                             <h3>{{ .Title }}</h3>
                             <p>{{ .Content }}</p>
@@ -89,13 +77,10 @@
                         <figure class="col-md-6 animated" data-animation="bounceInRight">
                             {{ with .Params.featured_image }}<img src="{{ . }}"/>{{ end }}
                         </figure>
-                    </section>
-
-                    <hr class="invisible" />
-                    <hr class="invisible" />
-                    
-                {{ end }}
-
+                    {{ end }}
+                </section>
+                <hr class="invisible" />
+                <hr class="invisible" />    
             {{ end }}
         </div>
     </section>

@@ -4,6 +4,7 @@ date: 2020-04-06T11:52:52+05:30
 type: "habit"
 featured_image: "/img/habit/kiss.png"
 weight: 3
+
 draft: false
 ---
 
