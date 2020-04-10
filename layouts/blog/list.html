@@ -35,17 +35,8 @@
 
     <section class="content content-light  videos-list videos-list-list">
         <div class="container" id="vueId">
-            <div class="pull-right list-view-change">
-                <a class=""  href="/blog-grid"><i class="fa fa-th-large" ></i> Grid view </a>
-                <a class="active" href="/blog"><i class="fa fa-th-list " ></i> List view</a>
-            </div>
-
-            <div class="filter" id="filters">
-                <a class="btn btn-theme navbar-btn btn-orange" data-filter="*">All</a> &nbsp; 
-                {{range $name, $taxonomy := where .Site.Taxonomies.categories "Type" "blog" }}
-                <a class="btn btn-theme navbar-btn btn-lightblue" data-filter=".{{$name}}">{{ humanize $name }}</a>
-                {{ end }}               
-            </div>
+            
+            {{ partial "category-filter.html" . }}
             
             <hr class="invisible" />
             <hr class="invisible" />
@@ -67,7 +58,7 @@
                                     Author: <b>{{if .Params.author}} {{.Params.Author}}{{end}}</b>
                                 </div>
                                 <div class="col-md-4">
-                                    Date: <b>{{ dateFormat "Monday, Jan 2, 2006" .Date }}</b>
+                                    Date: <b>{{ dateFormat "Jan 2, 2006" .Date }}</b>
                                 </div>
                                 <div class="col-md-4">
                                     Category: <b>{{ if .Params.categories }}{{ range .Params.categories }} {{ . }}, {{ end }} {{ end }}</b>

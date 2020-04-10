@@ -35,17 +35,7 @@
 
     <section class="content content-light  videos-list videos-list-list">
         <div class="container">
-            <div class="pull-right list-view-change">
-                <a href="/blog-grid"><i class="fa fa-th-large"></i> Grid view</a>
-                <a href="/blog" class="active"><i class="fa fa-th-list"></i> List view</a>
-            </div>
-            <div class="filter" id="filters">
-                <a class="btn btn-theme navbar-btn btn-orange" data-filter="*">All</a> &nbsp; 
-                {{range $name, $taxonomy := where .Site.Taxonomies.categories "Type" "blog" }}
-                <a class="btn btn-theme navbar-btn btn-lightblue" data-filter=".{{$name}}">{{ humanize $name }}</a>
-                {{ end }}
-
-            </div>
+            {{ partial "category-filter.html" . }}
             
             <hr class="invisible" />
             <hr class="invisible" />
@@ -64,7 +54,7 @@
                     </div>
                     <div class="row video-params">
                         <div class="col-md-12">
-                            Date: <b>{{ dateFormat "Monday, Jan 2, 2006" .Date }}</b>
+                            Date: <b>{{ dateFormat "Jan 2, 2006" .Date }}</b>
                         </div>
                     </div>
                     <div class="row video-params">

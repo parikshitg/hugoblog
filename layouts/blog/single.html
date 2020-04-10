@@ -86,7 +86,7 @@
                         <h2>Recent Postings</h2>
                         <ul>
                             {{ range first 5 (where .Site.RegularPages "Type" "blog")  }}
-                            <li><a href="{{.Permalink}}"><h3>{{.Title}}</h3>{{ dateFormat "Monday, Jan 2, 2006" .Date }}</a></li>
+                            <li><a href="{{.Permalink}}"><h3>{{.Title}}</h3>{{ dateFormat "Jan 2, 2006" .Date }}</a></li>
                             {{ end }}
                         </ul>
                     </section>

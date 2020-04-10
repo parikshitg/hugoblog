@@ -1,0 +1,11 @@
+            <div class="pull-right list-view-change">
+                <a class=""  href="/blog-grid"><i class="fa fa-th-large" ></i> Grid view </a>
+                <a class="active" href="/blog"><i class="fa fa-th-list " ></i> List view</a>
+            </div>
+
+            <div class="filter" id="filters">
+                <a class="btn btn-theme navbar-btn btn-orange" data-filter="*">All</a> &nbsp; 
+                {{range $name, $taxonomy := where .Site.Taxonomies.categories "Type" "blog" }}
+                <a class="btn btn-theme navbar-btn btn-lightblue" data-filter=".{{$name}}">{{ humanize $name }}</a>
+                {{ end }}               
+            </div>
