@@ -1,6 +1,11 @@
-baseURL = "http://blog.parikshitg.me/"
+baseURL = "http://hugo.parikshitg.me/"
 languageCode = "en-us"
 title = "Hugo Blog"
+paginate = 3
+canonifyURLs = true
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[permalinks]
+categories = "/blog/categories/:slug"

@@ -1,5 +1,5 @@
 ---
-title: "Live Reload"
+title: "Super Fast"
 date: 2020-04-06T15:59:39+05:30
 type: "banner"
 featured_image: "/img/banner/fast.jpg"
