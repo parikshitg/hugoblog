@@ -15,7 +15,7 @@
 	
 </head>
 <body>
-    {{ partial "header.html" }}
+    {{ partial "header.html" . }}
     
     <div class="page-header">
         <div class="container">
@@ -59,15 +59,6 @@
                 
                 <!-- Blog - sidebar -->
                 <aside class="col-md-4" role="complementary">
-                
-                    <!-- Widget: Search -->
-                    <section class="widget search">
-                        <h2>Search</h2>
-                        <form action="blog-list.htm" class="search-blog" method="get" role="search">
-                            <input type="search" class="form-control input-lg" name="q" placeholder="search for something..." />
-                            <a href="#" class="submit"><i class="fa fa-search"></i></a>
-                        </form>
-                    </section>
                     
                     <!-- Widget: Categories -->
                     <section class="widget category">

@@ -41,7 +41,8 @@
             <hr class="invisible" />
 
             <div class="isotope-grid">
-                {{ range where .Site.RegularPages "Type" "blog" }}
+                {{ $Paginator := .Paginate (where .Site.RegularPages "Type" "blog") }}
+                {{ range $Paginator.Pages }}
                 <article class="col-md-4 video-item {{ if .Params.categories }}{{ range .Params.categories }} {{ lower . | urlize}} {{ end }} {{ end }}" >
                     <a href="{{.Permalink}}">
                         {{ with .Params.featured_image }}<img src="{{ . }}" alt="" class="img-rounded blog-img img" width="300px" height="auto" />{{ end }}
@@ -66,11 +67,9 @@
                 {{ end }}
             </div>
 
-
             {{ $pag := $.Paginator }}
             {{ if gt $pag.TotalPages 1 }}
             <ul class="pagination">
-                
                 {{ if $pag.HasPrev }}
                 <li class=""><a href="{{ $pag.Prev.URL }}" ><i class="fa fa-angle-left"></i></a></li>
                 {{ end }}
@@ -86,10 +85,9 @@
                 {{ if $pag.HasNext }}
                 <li><a href="{{ $pag.Next.URL }}"><i class="fa fa-angle-right"></i></a></li>
                 {{ end }}
-
             </ul>
             {{ end }}
-
+            
         </div>
     </section>
 

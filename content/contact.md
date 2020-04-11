@@ -1,6 +1,7 @@
 ---
 title: "Contact"
 date: 2020-04-08T12:18:08+05:30
+menu: main
 draft: false
 ---
 
@@ -19,12 +20,12 @@ draft: false
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="fieldInputName">Name</label>
-                            <input type="text" class="form-control input-lg" id="fieldInputName" placeholder="enter your name" />
-                        </div>
-                        <div class="form-group">
                             <label for="fieldInputTopic">Subject</label>
                             <input type="text" class="form-control input-lg" id="fieldInputTopic" placeholder="enter topic of message" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldInputName">Name</label>
+                            <input type="text" class="form-control input-lg" id="fieldInputName" placeholder="enter your name" />
                         </div>
                         <div class="form-group">
                             <label for="fieldInputEmail">Email address</label>
@@ -39,7 +40,6 @@ draft: false
                     </div>
                 </div>
                 <p class="text-right buttons-margin-horizontal">
-                    <input type="reset" class="btn btn-theme btn-gray" value="Reset" />
                     <input type="submit" class="btn btn-theme btn-green" value="Send message" />
                 </p>
             </form>

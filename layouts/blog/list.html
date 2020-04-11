@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    {{ partial "header.html"  }}
+    {{ partial "header.html" . }}
 
     <div class="page-header">
         <div class="container">
@@ -37,7 +37,7 @@
         <div class="container" id="vueId">
             
             {{ partial "category-filter.html" . }}
-            
+
             <hr class="invisible" />
             <hr class="invisible" />
 
@@ -52,7 +52,7 @@
                     </div>
                     <div class="col-md-8">
                             <h3 class="video-title"><a href="{{.Permalink }}">{{ .Title }}</a></h3>
-                            <p class="video-description">{{.Summary}}</p>
+                            <p class="video-description">{{.Summary}}<a href="{{ .Permalink }}">[...]</a></p>
                             <div class="row video-params">
                                 <div class="col-md-4">
                                     Author: <b>{{if .Params.author}} {{.Params.Author}}{{end}}</b>
@@ -102,31 +102,23 @@
 
     <!-- JavaScript Files -->
     
+
     <script src="/plugin/jquery-1.10.2.min.js"></script>
-    <script src="/plugin/isotope.pkgd.min.js"></script>
-    <script>
+    <script type="text/javascript">
         jQuery(document).ready(function($) {
-            var $grid = $('.isotope-grid').isotope({
-                itemSelector: '.video-item',
-                category: '[data-category]'
+            path = window.location.pathname;
+            console.log("path=",path);
+            $('#filters a').each(function() {
+                console.log("href=",$(this).attr("href"));
+                if ($(this).attr("href") == window.location.pathname) {
+                    $(this).removeClass('btn-lightblue').addClass('btn-orange');
+                }
             });
-
-            $('#filters').on('click', 'a', function() {
-                var filterValue = $( this ).attr('data-filter');
-                $grid.isotope({ filter: filterValue });
-            }); 
-
-            $(".navbar-btn").click(function(){
-                    $(this).removeClass('btn-lightblue');
-                    $(this).addClass('btn-orange').siblings().removeClass('btn-orange');
-                    $(this).siblings().addClass('btn-lightblue'); 
-                });
-        });   
+        }); 
     </script>
     <script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
     <script src="/script/animate.js"></script>
     <script src="/plugin/jquery.cuteTime.min.js"></script>
-
 
     <!-- / JavaScript Files -->
 </body>

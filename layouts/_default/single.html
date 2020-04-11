@@ -19,7 +19,7 @@
     <![endif]-->
 </head>
 <body>
-    {{ partial "header.html" }}
+    {{ partial "header.html" . }}
     
     <div class="page-header">
         <div class="container">
@@ -36,31 +36,7 @@
             </div>
         </div>
     </div>
-    
     {{ .Content }}
-
-    <!-- CLIENTS IN ABOUT PAGE starts-->
-    {{ if eq .URL "/about/" }}
-        {{ $l := len (where .Site.RegularPages "Type" "client") }}
-            {{ if lt $l 0 }}
-            {{ else }}
-            <div class="container">
-                <p class="text-center header">Those <strong>happy clients</strong> work with us</p>
-                <p class="text-center">We believe that analysis of your company and your customers is key in responding effectively to your promotional needs and we will work with you to fully understand your business.</p>
-
-                <div class="row text-center client-logos">
-                    {{ range $i,$c := where .Site.RegularPages "Type" "client" }}
-                    <div class="col-md-3">
-                        <a href="#">
-                            {{ with $c.Params.featured_image }}<img src="{{ . }}" alt="" />{{ end }}
-                        </a>
-                    </div>
-                    {{ end }}
-                </div>  
-            </div>  
-        {{ end }}
-    {{ end }}
-    <!-- CLIENTS IN ABOUT PAGE ends-->
     
     {{ partial "footer.html" }}
     <!-- JavaScript Files -->
