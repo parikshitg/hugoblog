@@ -15,7 +15,7 @@ draft: false
             <hr class="invisible" />
             
    <!-- Contact form -->
-  <form action="register.htm" class="contact-form" role="form">
+  <form action="/contact" method="post" class="contact-form" role="form" id="contactform">
                 <h2 class="title-form">Contact form</h2>
                 <div class="row">
                     <div class="col-md-6">
@@ -40,7 +40,7 @@ draft: false
                     </div>
                 </div>
                 <p class="text-right buttons-margin-horizontal">
-                    <input type="submit" class="btn btn-theme btn-green" value="Send message" />
+                    <input type="submit" class="btn btn-theme btn-green" value="Send message" onclick="send()" />
                 </p>
             </form>
             

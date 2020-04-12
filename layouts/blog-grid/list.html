@@ -2,98 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Blog</title>
+    <title>Blog Grid</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />    
     <!-- CSS Files -->
     <link rel="stylesheet" href="/plugin/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/plugin/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/plugin/animate.min.css" />
+    <link rel="stylesheet" href="/css/animate.min.css" />
 </head>
 <body>
-
-    {{ partial "header.html"  }}
-
+    {{partial "header.html" . }}
+    
     <div class="page-header">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1>Blog List</h1>
+                    <h1>Blog Grid View</h1>
                 </div>
                 <div class="col-md-5">
                     <ol class="breadcrumb pull-right">
                         <li><a href="/">Home</a></li>
-                        <!--li><a href="#">About</a></li-->
                         <li class="active">Blog</li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <section class="content content-light  videos-list videos-list-list">
+    
+    <!-- Video list boxes: grid -->
+    <section class="content content-light  videos-list videos-list-grid">
         <div class="container">
-            {{ partial "category-filter.html" . }}
-            
-            <hr class="invisible" />
-            <hr class="invisible" />
-
-            <div class="isotope-grid">
-                {{ $Paginator := .Paginate (where .Site.RegularPages "Type" "blog") }}
-                {{ range $Paginator.Pages }}
-                <article class="col-md-4 video-item {{ if .Params.categories }}{{ range .Params.categories }} {{ lower . | urlize}} {{ end }} {{ end }}" >
-                    <a href="{{.Permalink}}">
-                        {{ with .Params.featured_image }}<img src="{{ . }}" alt="" class="img-rounded blog-img img" width="300px" height="auto" />{{ end }}
-                    </a>
-                    <h3 class="video-title"><a href="{{.Permalink}}">{{.Title}}</a></h3>
-                    <div class="row video-params">
-                        <div class="col-md-12">
-                            Author: <b>{{.Params.Author}}</b>
-                        </div>
-                    </div>
-                    <div class="row video-params">
-                        <div class="col-md-12">
-                            Date: <b>{{ dateFormat "Jan 2, 2006" .Date }}</b>
-                        </div>
-                    </div>
-                    <div class="row video-params">
-                        <div class="col-md-12">
-                            Category: <b>{{ if .Params.categories }}{{ range .Params.categories }} {{ . }}, {{ end }} {{ end }}</b>
-                        </div>
-                    </div>
-                </article>
-                {{ end }}
+            <div class="pull-right list-view-change">
+                <a href="/blog-grid" class="active"><i class="fa fa-th-large"></i> Grid view</a>
+                <a href="/blog"><i class="fa fa-th-list"></i> List view</a>
             </div>
-
-            {{ $pag := $.Paginator }}
-            {{ if gt $pag.TotalPages 1 }}
-            <ul class="pagination">
-                {{ if $pag.HasPrev }}
-                <li class=""><a href="{{ $pag.Prev.URL }}" ><i class="fa fa-angle-left"></i></a></li>
-                {{ end }}
-                
-                {{ range $pag.Pagers }}
-                {{ if eq . $pag }}
-                <li class="active"><a href="{{ .URL }}">{{ .PageNumber }} <span class="sr-only"></span></a></li>
-                {{ else }}
-                <li><a href="{{ .URL }}">{{ .PageNumber }}</a></li>
-                {{ end }}
-                {{ end }}
-
-                {{ if $pag.HasNext }}
-                <li><a href="{{ $pag.Next.URL }}"><i class="fa fa-angle-right"></i></a></li>
-                {{ end }}
-            </ul>
-            {{ end }}
+            <div class="filter" id="filters">
+                <a class="btn btn-theme navbar-btn btn-orange" data-filter="*">All</a> &nbsp; 
+                {{range $name, $taxonomy := where .Site.Taxonomies.categories "Type" "blog" }}
+                <a class="btn btn-theme navbar-btn btn-lightblue" data-filter=".{{$name}}">{{ humanize $name }}</a>   
+                {{ end }}             
+            </div>
             
-        </div>
+            <hr class="invisible" />
+            <hr class="invisible" />
+
+            <div class="row isotope-grid">
+            {{ range $i,$b := where .Site.RegularPages "Type" "blog" }}
+                <article class="col-md-4 video-item {{ if .Params.categories }}{{ range .Params.categories }} {{ lower . | urlize}} {{ end }} {{ end }}" data-category="{{ if .Params.categories }}{{ range .Params.categories }} {{ lower . | urlize}} {{ end }} {{ end }}">
+                        <a href="{{.Permalink}}">
+                            {{ with .Params.featured_image }}<img src="{{ . }}" alt="" class="img-rounded blog-img img" width="300px" height="auto" />{{ end }}
+                        </a>
+                        <h3 class="video-title"><a href="{{.Permalink}}">{{.Title}}</a></h3>
+                        <div class="row video-params">
+                            <div class="col-md-12">
+                                Author: <b>{{.Params.Author}}</b>
+                            </div>
+                        </div>
+                        <div class="row video-params">
+                            <div class="col-md-12">
+                                Date: <b>{{ dateFormat "Jan 2, 2006" .Date }}</b>
+                            </div>
+                        </div>
+                        <div class="row video-params">
+                            <div class="col-md-12">
+                                Category: <b>{{ if .Params.categories }}{{ range .Params.categories }} {{ . }}, {{ end }} {{ end }}</b>
+                            </div>
+                        </div>
+                </article>  
+            {{ end }}
+            </div>
+        </div>        
     </section>
-
-    {{ partial "footer.html"  }}
-
-
+    
+    {{partial "footer.html" . }}
     <!-- JavaScript Files -->
     <script src="/plugin/jquery-1.10.2.min.js"></script>
     <script src="/plugin/isotope.pkgd.min.js"></script>
@@ -117,7 +99,6 @@
         });   
     </script>
     <script src="/plugin/bootstrap/js/bootstrap.min.js"></script>
-    <script src="/script/animate.js"></script>
     <script src="/plugin/jquery.cuteTime.min.js"></script>
     <script src="/script/script.js"></script>
     <!-- / JavaScript Files -->

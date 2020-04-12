@@ -7,4 +7,4 @@ weight: 4
 draft: false
 ---
 
-Hugo takes the parameters listed below into consideration when choosing a layout for a given page. They are listed in a priority order. This should feel natural, but look at the table below for concrete examples of the different parameter variations.
+Hugo is a static site generator, you don’t have to worry about malicious code being injected into your site when users visit it. Standard hacking attacks like scripting or database security exploits just don’t work.

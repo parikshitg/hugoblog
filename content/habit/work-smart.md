@@ -1,5 +1,5 @@
 ---
-title: "Working Smartly"
+title: "Work Smartly"
 date: 2020-04-06T11:52:38+05:30
 type: "habit"
 featured_image: "/img/habit/work-smart.png"
@@ -7,4 +7,4 @@ weight: 2
 draft: false
 ---
 
-Hugo takes the parameters listed below into consideration when choosing a layout for a given page. They are listed in a priority order. This should feel natural, but look at the table below for concrete examples of the different parameter variations.
+While creating a HUGO site you should work smartly, by understanding how the hugo framework works. Few hacks are okay to meet the project deadline but at the same time don't introduce any known bugs.

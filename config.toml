@@ -1,7 +1,7 @@
 baseURL = ""
 languageCode = "en-us"
 title = "Hugo Blog"
-paginate = 6
+paginate = 5
 canonifyURLs = true
 
 [markup.goldmark.renderer]
@@ -20,7 +20,7 @@ name = "Blog"
 url = "/blog/"
 weight = 2
 
-sectionPagesMenu = "main"
+
 
 
 

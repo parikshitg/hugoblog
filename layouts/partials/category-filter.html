@@ -4,8 +4,8 @@
             </div>
 
             <div class="filter" id="filters">
-                <a class="btn btn-theme navbar-btn btn-orange" href="/blog/">All</a> &nbsp; 
+                <a class="btn btn-theme navbar-btn btn-lightblue" href="/blog/" id="blog/">All</a> &nbsp; 
                 {{range $name, $taxonomy := where .Site.Taxonomies.categories "Type" "blog" }}
-                <a class="btn btn-theme navbar-btn btn-lightblue" href="/blog/categories/{{$name}}/" >{{ humanize $name }}</a>
+                <a class="btn btn-theme navbar-btn btn-lightblue" href="/blog/categories/{{$name}}/" id="blog/categories/{{$name}}/">{{ humanize $name }}</a>
                 {{ end }}               
             </div>

@@ -43,7 +43,7 @@
                         <header>
                            {{ with .Params.featured_image }} <p class="blog-img"><img src="{{ . }}" alt="" class="img-rounded"  width="617px" height="auto" /></p>{{ end }}
                             <p class="blue-box blog-params">
-                                <span><i class="fa fa-calendar"></i> <time datetime="2013-01-10T21:01">{{ dateFormat "Monday, Jan 2, 2006" .Date }}</time></span>
+                                <span><i class="fa fa-calendar"></i> <time datetime="2013-01-10T21:01">{{ dateFormat "Jan 2, 2006" .Date }}</time></span>
                                 <span><i class="fa fa-user"></i> {{.Params.Author}}</span>
                                 <span><i class="fa fa-tags"></i>{{ if .Params.categories }}{{ range .Params.categories }} {{ . }}, {{ end }} {{ end }}
                             </p>
