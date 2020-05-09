@@ -7,7 +7,7 @@ draft: false
 
 <section class="content content-light">
         <div class="container">
-            <p class="header text-center">Don't be shy and <strong>get in touch!</strong></p>
+            <p class="header text-center"><strong>Get in touch!</strong></p>
             <p class="text-center">Send us you questions and queries, lets see what we can do for you.
 </p>
             
